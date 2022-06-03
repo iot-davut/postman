@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "bf0c9cee-1942-42bc-bede-4601dc75eaad",
+		"name": "i4Home",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    if(!pm.response.text().includes(\"alert(\\\"Wrong RegisterID\")){\r",
+							"        var text = pm.globals.get(\"registration\");\r",
+							"        console.log(\"basarili\",text);\r",
+							"        pm.globals.set(\"basarili\", text);\r",
+							"        pm.expect(pm.response.text()).to.include(\"basarili\");\r",
+							"    }\r",
+							"    pm.expect(pm.response.text()).to.include(\"alert(\");\r",
+							"    //postman.setNextRequest(\"registration\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function makeid(length) {\r",
+							"    var result           = '';\r",
+							"    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprsqtuvwxyz0123456789';\r",
+							"    var charactersLength = characters.length;\r",
+							"    for ( var i = 0; i < length; i++ ) {\r",
+							"        result += characters.charAt(Math.floor(Math.random() * \r",
+							"    charactersLength));\r",
+							"    }\r",
+							"   return result;\r",
+							"}\r",
+							"\r",
+							"pm.globals.set(\"registration\", makeid(11));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Cookie",
+						"value": "PHPSESSID=d0iuq7v3fue6tls6kg9kvljsk1"
+					},
+					{
+						"key": "Origin",
+						"value": "http://app.i4home.net"
+					},
+					{
+						"key": "Referer",
+						"value": "http://app.i4home.net/home/register.php?email=deneme@gmail.com"
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Mobile Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "davuterarslan",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "repassword",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "davut.erarslan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "reemail",
+							"value": "davut.erarslan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "machineid",
+							"value": "{{registration}}",
+							"type": "text"
+						},
+						{
+							"key": "remachineid",
+							"value": "{{registration}}",
+							"type": "text"
+						},
+						{
+							"key": "captcha",
+							"value": "jLxL6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://app.i4home.net/home/register.php?email=deneme@gmail.com",
+					"protocol": "http",
+					"host": [
+						"app",
+						"i4home",
+						"net"
+					],
+					"path": [
+						"home",
+						"register.php"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "deneme@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
